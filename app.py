@@ -8,7 +8,7 @@ import jwt
 # Flask 객체 인스턴스 생성
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY')
-oauth = OAuth(app)
+oauth = OAuth(app) 
  
 app.register_blueprint(google_oauth.google_bp)
 app.register_blueprint(kakao_oauth.kakao_bp)
