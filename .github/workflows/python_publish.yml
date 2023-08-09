@@ -9,8 +9,8 @@ on:
 env:
   PROJECT_NAME: jonghun_project
   BUCKET_NAME: jonghun-cicd-bucket
-  CODE_DEPLOY_APP_NAME: jonghun_instance
-  DEPLOYMENT_GROUP_NAME: jonghun_cicd
+  CODE_DEPLOY_APP_NAME: jonghun_cicd
+  DEPLOYMENT_GROUP_NAME: jonghun_instance
 
 jobs:
   deploy:
@@ -49,15 +49,8 @@ jobs:
           aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$BUCKET_NAME/$PROJECT_NAME/$GITHUB_SHA.zip
 
       - name: Code Deploy To EC2 instance
-        run: |
-          aws deploy create-deployment 
+        run: aws deploy create-deployment 
                 --application-name $CODE_DEPLOY_APP_NAME 
                 --deployment-config-name CodeDeployDefault.AllAtOnce
                 --deployment-group-name $DEPLOYMENT_GROUP_NAME 
-                --s3-location bucket=$BUCKET_NAME,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip || aws deploy create-deployment help
-        env:
-          CODE_DEPLOY_APP_NAME: ${{ env.CODE_DEPLOY_APP_NAME }}
-          DEPLOYMENT_GROUP_NAME: ${{ env.DEPLOYMENT_GROUP_NAME }}
-          BUCKET_NAME: ${{ env.BUCKET_NAME }}
-          PROJECT_NAME: ${{ env.PROJECT_NAME }}
-          GITHUB_SHA: ${{ github.sha }}
+                --s3-location bucket=$BUCKET_NAME,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
