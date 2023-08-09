@@ -6,3 +6,4 @@ certifi
 requests
 Flask-OAuthlib
 python-dotenv
+gunicorn

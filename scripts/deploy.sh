@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-REPOSITORY=/home/ubuntu/moduform
+REPOSITORY=/home/ubuntu/jonghun
+FLASK_APP_DIR=/home/ubuntu/jonghun  
 cd $REPOSITORY
 
-APP_NAME=moduform
+APP_NAME=app
 JAR_NAME=$(ls $REPOSITORY/build/libs/ | grep 'SNAPSHOT.jar' | tail -n 1)
 JAR_PATH=$REPOSITORY/build/libs/$JAR_NAME
 
@@ -20,3 +21,8 @@ fi
 
 echo "> Deploy - $JAR_PATH "
 nohup java -jar $JAR_PATH > /dev/null 2> /dev/null < /dev/null &
+
+# Flask 앱 시작
+echo "> Starting Flask app with gunicorn"
+cd $FLASK_APP_DIR
+nohup gunicorn -w 4 your_flask_app_name:app -b 0.0.0.0:5002 > /dev/null 2> /dev/null < /dev/null &
