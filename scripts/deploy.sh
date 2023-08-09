@@ -25,4 +25,4 @@ nohup java -jar $JAR_PATH > /dev/null 2> /dev/null < /dev/null &
 # Flask 앱 시작
 echo "> Starting Flask app with gunicorn"
 cd $FLASK_APP_DIR
-nohup gunicorn -w 4 your_flask_app_name:app -b 0.0.0.0:5002 > /dev/null 2> /dev/null < /dev/null &
+nohup gunicorn -w 4 app:app -b 0.0.0.0:5002 > /dev/null 2> /dev/null < /dev/null &
