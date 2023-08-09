@@ -13,7 +13,7 @@ oauth = OAuth(app)
 app.register_blueprint(google_oauth.google_bp)
 app.register_blueprint(kakao_oauth.kakao_bp)
 
-
+ 
 # 메인페이지 렌더링
 @app.route('/', methods = ['GET'])
 def get_main_page():
