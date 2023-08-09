@@ -1,21 +1,31 @@
 #!/usr/bin/env bash
 
 REPOSITORY=/home/ubuntu/jonghun
-FLASK_APP_DIR=/home/ubuntu/jonghun  
+FLASK_APP_DIR=/home/ubuntu/jonghun
 cd $REPOSITORY
 
-APP_NAME=app
 JAR_NAME=$(ls $REPOSITORY/build/libs/ | grep 'SNAPSHOT.jar' | tail -n 1)
 JAR_PATH=$REPOSITORY/build/libs/$JAR_NAME
 
-CURRENT_PID=$(pgrep -f $APP_NAME)
-
-if [ -z $CURRENT_PID ]
+# Flask 앱 인스턴스 종료
+FLASK_PID=$(pgrep -f gunicorn)
+if [ -z $FLASK_PID ]
 then
-  echo "> 종료할 애플리케이션이 없습니다."
+  echo "> 종료할 Flask 애플리케이션이 없습니다."
 else
-  echo "> kill -9 $CURRENT_PID"
-  kill -15 $CURRENT_PID
+  echo "> kill Flask app with PID: $FLASK_PID"
+  kill -15 $FLASK_PID
+  sleep 5
+fi
+
+# Java 애플리케이션 인스턴스 종료
+JAVA_PID=$(pgrep -f $JAR_NAME)
+if [ -z $JAVA_PID ]
+then
+  echo "> 종료할 Java 애플리케이션이 없습니다."
+else
+  echo "> kill Java app with PID: $JAVA_PID"
+  kill -15 $JAVA_PID
   sleep 5
 fi
 
