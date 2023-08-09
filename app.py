@@ -9,7 +9,7 @@ import jwt
 app = Flask(__name__)
 app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 oauth = OAuth(app)
-
+ 
 app.register_blueprint(google_oauth.google_bp)
 app.register_blueprint(kakao_oauth.kakao_bp)
 
