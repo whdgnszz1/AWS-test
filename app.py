@@ -64,7 +64,7 @@ def verify_token():
 # 로그아웃 기능
 @app.route('/logout', methods = ['POST'])
 def logout(): 
-    return user_logout()
+    return user_logout() 
 
 # 회원가입
 
