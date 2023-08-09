@@ -1,0 +1,8 @@
+flask
+pymongo
+dnspython
+jwt
+certifi
+requests
+Flask-OAuthlib
+dotenv
