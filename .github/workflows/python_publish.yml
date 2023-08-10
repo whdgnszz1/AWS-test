@@ -55,7 +55,7 @@ jobs:
         run: |
           aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$BUCKET_NAME/$PROJECT_NAME/$GITHUB_SHA.zip
 
-       - name: Create .env file
+      - name: Create .env file
         run: |
           echo "MONGO_USER=${{ secrets.MONGO_USER }}" > .env
           echo "MONGO_PASS=${{ secrets.MONGO_PASS }}" >> .env
