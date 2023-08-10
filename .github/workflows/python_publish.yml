@@ -25,13 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Install Python and pip
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
 
-      # Install dependencies
       - name: Install dependencies
         run: |
           python -m venv venv
@@ -64,9 +62,6 @@ jobs:
       - name: Upload to S3
         run: |
           aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$BUCKET_NAME/$PROJECT_NAME/$GITHUB_SHA.zip
-
-
-
 
       - name: Code Deploy To EC2 instance
         run: aws deploy create-deployment 

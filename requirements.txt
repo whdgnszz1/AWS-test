@@ -7,3 +7,4 @@ requests
 Flask-OAuthlib
 python-dotenv
 gunicorn
+boto3
