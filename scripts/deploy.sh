@@ -17,15 +17,16 @@ else
 fi
 
 if [ -d "$FLASK_APP_DIR/venv" ]; then
-    echo "> Activating existing virtual environment"
-    source $FLASK_APP_DIR/venv/bin/activate
-else
-    echo "> Setting up new virtual environment"
-    python3 -m venv $FLASK_APP_DIR/venv
-    source $FLASK_APP_DIR/venv/bin/activate
-    echo "> Installing dependencies"
-    pip install -r $FLASK_APP_DIR/requirements.txt
+    echo "> Removing existing venv directory"
+    rm -rf $FLASK_APP_DIR/venv
 fi
+
+echo "> Setting up new virtual environment"
+python3 -m venv $FLASK_APP_DIR/venv
+source $FLASK_APP_DIR/venv/bin/activate
+
+echo "> Installing dependencies"
+pip install -r $FLASK_APP_DIR/requirements.txt
 
 # Flask 앱 시작
 echo "> Starting Flask app with gunicorn"
