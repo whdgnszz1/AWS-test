@@ -10,7 +10,7 @@ load_dotenv()
 
 google_bp = Blueprint('google_oauth', __name__)
 
-# 환경변수 설정
+# 환경변수 설정 
 MONGO_USER = os.environ.get('MONGO_USER')
 MONGO_PASS = os.environ.get('MONGO_PASS')
 SECRET_KEY = os.environ.get('SECRET_KEY')
