@@ -16,10 +16,8 @@ else
   sleep 5
 fi
 
-if [ -d "$FLASK_APP_DIR/venv" ]; then
-    echo "> Removing existing venv directory"
-    rm -rf $FLASK_APP_DIR/venv
-fi
+echo "> Removing existing venv directory"
+rm -rf $FLASK_APP_DIR/venv
 
 echo "> Setting up new virtual environment"
 python3 -m venv $FLASK_APP_DIR/venv
