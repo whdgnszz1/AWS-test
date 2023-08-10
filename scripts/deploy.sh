@@ -18,6 +18,11 @@ else
   sleep 5
 fi
 
+# 의존성 설치 (옵션, 필요한 경우에만)
+echo "> Installing dependencies"
+source $FLASK_APP_DIR/venv/bin/activate
+pip install -r $FLASK_APP_DIR/requirements.txt
+
 # Java 애플리케이션 인스턴스 종료
 JAVA_PID=$(pgrep -f $JAR_NAME)
 if [ -z $JAVA_PID ]
