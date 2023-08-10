@@ -30,4 +30,4 @@ pip install -r $FLASK_APP_DIR/requirements.txt
 echo "> Starting Flask app with gunicorn"
 cd $FLASK_APP_DIR
 source $FLASK_APP_DIR/venv/bin/activate
-nohup gunicorn -w 4 app:app -b 0.0.0.0:5002 > /dev/null 2> /dev/null < /dev/null &
+python3 app.py
