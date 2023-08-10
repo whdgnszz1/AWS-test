@@ -15,7 +15,7 @@ MONGO_USER = os.environ.get('MONGO_USER')
 MONGO_PASS = os.environ.get('MONGO_PASS')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# 몽고DB 연결
+# 몽고DB 연결 
 ca = certifi.where()
 client = MongoClient(f'mongodb+srv://{MONGO_USER}:{MONGO_PASS}@cluster0.ebm0gtg.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.miniproject
