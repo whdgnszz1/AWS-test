@@ -23,7 +23,7 @@ def get_main_page():
 @app.route('/login', methods = ['GET'])
 def get_login_page():
     return render_template('login.html')
-
+ 
 # 로그인 기능
 @app.route('/login', methods=['POST'])
 def login():
