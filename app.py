@@ -18,7 +18,7 @@ app.register_blueprint(kakao_oauth.kakao_bp)
 @app.route('/', methods = ['GET'])
 def get_main_page():
     return render_template('index.html')
-
+ 
 # 로그인페이지 렌더링
 @app.route('/login', methods = ['GET'])
 def get_login_page():
