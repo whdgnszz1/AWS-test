@@ -1,13 +1,14 @@
-#!/usr/bin/env bash
+# scripts/set_env_vars.sh
 
-ENV_PATH=/home/ubuntu/jonghun/.env
+#!/bin/bash
 
-echo "MONGO_USER=${MONGO_USER}" >> $ENV_PATH
-echo "MONGO_PASS=${MONGO_PASS}" >> $ENV_PATH
-echo "SECRET_KEY=${SECRET_KEY}" >> $ENV_PATH
-echo "FLASK_SECRET_KEY=${FLASK_SECRET_KEY}" >> $ENV_PATH
-echo "GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}" >> $ENV_PATH
-echo "GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}" >> $ENV_PATH
-echo "KAKAO_CLIENT_ID=${KAKAO_CLIENT_ID}" >> $ENV_PATH
-echo "AWS_S3IMAGE_ACCESS_KEY_ID=${AWS_S3IMAGE_ACCESS_KEY_ID}" >> $ENV_PATH
-echo "AWS_S3IMAGE_SECERT_ACCESS_KEY=${AWS_S3IMAGE_SECERT_ACCESS_KEY}" >> $ENV_PATH
+echo "export MONGO_USER=${MONGO_USER}" >> ~/.bashrc
+echo "export MONGO_PASS=${MONGO_PASS}" >> ~/.bashrc
+echo "export SECRET_KEY=${SECRET_KEY}" >> ~/.bashrc
+echo "export FLASK_SECRET_KEY=${FLASK_SECRET_KEY}" >> ~/.bashrc
+echo "export GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}" >> ~/.bashrc
+echo "export GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}" >> ~/.bashrc
+echo "export KAKAO_CLIENT_ID=${KAKAO_CLIENT_ID}" >> ~/.bashrc
+
+# 환경 변수 적용
+source ~/.bashrc
