@@ -51,13 +51,20 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_PRIVATE_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - name: List Zip File Contents
-        run: |
-          unzip -l $GITHUB_SHA.zip
-
       - name: Upload to S3
         run: |
           aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$BUCKET_NAME/$PROJECT_NAME/$GITHUB_SHA.zip
+
+       - name: Create .env file
+        run: |
+          echo "MONGO_USER=${{ secrets.MONGO_USER }}" > .env
+          echo "MONGO_PASS=${{ secrets.MONGO_PASS }}" >> .env
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
+          echo "FLASK_SECRET_KEY=${{ secrets.FLASK_SECRET_KEY }}" >> .env
+          echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> .env
+          echo "GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> .env
+          echo "KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}" >> .env
+
 
       - name: Code Deploy To EC2 instance
         run: aws deploy create-deployment 
