@@ -65,3 +65,4 @@ jobs:
                 --deployment-config-name CodeDeployDefault.AllAtOnce
                 --deployment-group-name $DEPLOYMENT_GROUP_NAME 
                 --s3-location bucket=$BUCKET_NAME,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
+                --environment-variables-overrides key=MONGO_USER,value=$MONGO_USER key=MONGO_PASS,value=$MONGO_PASS key=SECRET_KEY,value=$SECRET_KEY key=FLASK_SECRET_KEY,value=$FLASK_SECRET_KEY key=GOOGLE_CLIENT_ID,value=$GOOGLE_CLIENT_ID key=GOOGLE_CLIENT_SECRET,value=$GOOGLE_CLIENT_SECRET key=KAKAO_CLIENT_ID,value=$KAKAO_CLIENT_ID key=AWS_S3IMAGE_ACCESS_KEY_ID,value=$AWS_S3IMAGE_ACCESS_KEY_ID key=AWS_S3IMAGE_SECERT_ACCESS_KEY,value=$AWS_S3IMAGE_SECERT_ACCESS_KEY

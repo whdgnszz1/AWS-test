@@ -2,7 +2,7 @@
 
 REPOSITORY=/home/ubuntu/jonghun
 FLASK_APP_DIR=/home/ubuntu/jonghun
-LOG_PATH=$FLASK_APP_DIR/logs/gunicorn.log
+ENV_PATH=$FLASK_APP_DIR/.env
 cd $REPOSITORY
 
 # Flask 앱 인스턴스 종료
@@ -15,6 +15,11 @@ else
   kill -15 $FLASK_PID
   sleep 5
 fi
+
+if [ -f $ENV_PATH ]; then
+    source $ENV_PATH
+fi
+
 
 echo "> Removing existing venv directory"
 rm -rf $FLASK_APP_DIR/venv
