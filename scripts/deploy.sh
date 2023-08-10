@@ -18,9 +18,17 @@ else
   sleep 5
 fi
 
-# 의존성 설치 (옵션, 필요한 경우에만)
-echo "> Installing dependencies"
+# Check if venv exists and then remove
+if [ -d "$FLASK_APP_DIR/venv" ]; then
+    echo "> Removing existing venv directory"
+    rm -rf $FLASK_APP_DIR/venv
+fi
+
+# Set up virtual environment and install dependencies
+echo "> Setting up new virtual environment"
+python3 -m venv $FLASK_APP_DIR/venv
 source $FLASK_APP_DIR/venv/bin/activate
+echo "> Installing dependencies"
 pip install -r $FLASK_APP_DIR/requirements.txt
 
 # Java 애플리케이션 인스턴스 종료
