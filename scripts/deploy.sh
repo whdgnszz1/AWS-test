@@ -2,10 +2,8 @@
 
 REPOSITORY=/home/ubuntu/jonghun
 FLASK_APP_DIR=/home/ubuntu/jonghun
+LOG_PATH=$FLASK_APP_DIR/logs/gunicorn.log
 cd $REPOSITORY
-
-JAR_NAME=$(ls $REPOSITORY/build/libs/ | grep 'SNAPSHOT.jar' | tail -n 1)
-JAR_PATH=$REPOSITORY/build/libs/$JAR_NAME
 
 # Flask 앱 인스턴스 종료
 FLASK_PID=$(pgrep -f gunicorn)
@@ -18,35 +16,19 @@ else
   sleep 5
 fi
 
-# Check if venv exists and then remove
 if [ -d "$FLASK_APP_DIR/venv" ]; then
-    echo "> Removing existing venv directory"
-    rm -rf $FLASK_APP_DIR/venv
-fi
-
-# Set up virtual environment and install dependencies
-echo "> Setting up new virtual environment"
-python3 -m venv $FLASK_APP_DIR/venv
-source $FLASK_APP_DIR/venv/bin/activate
-echo "> Installing dependencies"
-pip install -r $FLASK_APP_DIR/requirements.txt
-
-# Java 애플리케이션 인스턴스 종료
-JAVA_PID=$(pgrep -f $JAR_NAME)
-if [ -z $JAVA_PID ]
-then
-  echo "> 종료할 Java 애플리케이션이 없습니다."
+    echo "> Activating existing virtual environment"
+    source $FLASK_APP_DIR/venv/bin/activate
 else
-  echo "> kill Java app with PID: $JAVA_PID"
-  kill -15 $JAVA_PID
-  sleep 5
+    echo "> Setting up new virtual environment"
+    python3 -m venv $FLASK_APP_DIR/venv
+    source $FLASK_APP_DIR/venv/bin/activate
+    echo "> Installing dependencies"
+    pip install -r $FLASK_APP_DIR/requirements.txt
 fi
-
-echo "> Deploy - $JAR_PATH "
-nohup java -jar $JAR_PATH > /dev/null 2> /dev/null < /dev/null &
 
 # Flask 앱 시작
 echo "> Starting Flask app with gunicorn"
 cd $FLASK_APP_DIR
 source $FLASK_APP_DIR/venv/bin/activate
-nohup gunicorn -w 4 app:app -b 0.0.0.0:5002 > /dev/null 2> /dev/null < /dev/null &
+nohup gunicorn -w 4 app:app -b 0.0.0.0:5002 > $LOG_PATH 2>&1 &

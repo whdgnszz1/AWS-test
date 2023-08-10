@@ -5,7 +5,7 @@ import certifi
 from flask_oauthlib.client import OAuth
 import os
 from dotenv import load_dotenv
-
+ 
 load_dotenv()
 
 kakao_bp = Blueprint('kakao_oauth', __name__)
