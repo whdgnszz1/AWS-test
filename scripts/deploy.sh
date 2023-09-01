@@ -1,6 +1,6 @@
-REPOSITORY=/home/ubuntu/node_level4-5_express
-NODE_APP_DIR=/home/ubuntu/node_level4-5_express
-ENV_PATH=$NODE_APP_DIR/.env
+REPOSITORY=/home/ubuntu/jonghun/node_level4-5_express
+NODE_APP_DIR=/home/ubuntu/jonghun/node_level4-5_express
+ENV_PATH=$NODE_APP_DIR/node_level4-5_express/src/.env
 cd $REPOSITORY
 
 NODE_PID=$(pgrep -f "node")
