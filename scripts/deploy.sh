@@ -1,6 +1,6 @@
 REPOSITORY=/home/ubuntu/jonghun
 NODE_APP_DIR=$REPOSITORY/node_level4-5_express
-ENV_PATH=$NODE_APP_DIR/src/.env
+ENV_PATH=$NODE_APP_DIR/.env
 
 cd $REPOSITORY
 
@@ -25,9 +25,7 @@ fi
 
 echo "> Installing dependencies"
 cd $NODE_APP_DIR
-pwd
 yarn install
 
 echo "> Starting Node Express app"
-pwd
 yarn start
