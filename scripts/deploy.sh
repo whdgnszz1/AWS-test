@@ -2,13 +2,6 @@ REPOSITORY=/home/ubuntu/jonghun
 NODE_APP_DIR=$REPOSITORY/node_level4-5_express
 ENV_PATH=$NODE_APP_DIR/.env
 
-if [[ ! -x $REPOSITORY/deploy.sh ]]; then
-  echo "> deploy.sh에 실행 권한을 부여합니다."
-  chmod +x $REPOSITORY/deploy.sh
-else
-  echo "> deploy.sh는 이미 실행 권한이 있습니다."
-fi
-
 cd $REPOSITORY
 
 NODE_PID=$(pgrep -f "node")
