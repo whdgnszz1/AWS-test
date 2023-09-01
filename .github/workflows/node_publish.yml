@@ -33,10 +33,7 @@ jobs:
 
       - name: Create .env file
         run: |
-          ls -la
           cd node_level4-5_express/src
-          ls -la
-          pwd
           echo 'DATABASE_URL="${{ secrets.DATABASE_URL }}"' > .env
           echo 'PORT="${{ secrets.PORT }}"' >> .env
           echo 'COOKIE_SECRET="${{ secrets.COOKIE_SECRET }}"' >> .env
@@ -44,7 +41,7 @@ jobs:
 
       - name: test
         run: |
-          cd node_level4-5_express/src && node app.ts
+          cd node_level4-5_express/src && ./node_modules/.bin/ts-node app.ts
 
       - name: Remove node_modules
         run: |
