@@ -32,6 +32,10 @@ app.use(
   })
 );
 
+app.use("/test", (req, res, next) => {
+  res.send({ message: "CICD" });
+});
+
 // router
 app.use("/api", mainRouter);
 
