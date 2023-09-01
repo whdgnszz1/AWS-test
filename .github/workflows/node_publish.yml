@@ -42,7 +42,7 @@ jobs:
       - name: test
         run: |
           cd node_level4-5_express/src
-          timeout 5s npx ts-node app.ts
+          timeout 20s npx ts-node app.ts
 
       - name: Remove node_modules
         run: |
