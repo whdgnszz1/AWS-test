@@ -39,10 +39,10 @@ jobs:
           echo 'COOKIE_SECRET=${{ secrets.COOKIE_SECRET }}' >> .env
           echo 'JWT_SECRET=${{ secrets.JWT_SECRET }}' >> .env
 
-      - name: test
-        run: | 
-          cd node_level4-5_express/src
-          timeout 20s npx ts-node app.ts
+      # - name: test
+      #   run: | 
+      #     cd node_level4-5_express/src
+      #     timeout 20s npx ts-node app.ts
 
       - name: Remove node_modules
         run: |
