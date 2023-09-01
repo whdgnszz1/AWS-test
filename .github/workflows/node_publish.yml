@@ -33,7 +33,7 @@ jobs:
 
       - name: Create .env file
         run: |
-          cd src
+          cd node_level4-5_express/src
           echo "DATABASE_URL=\"${{ secrets.DATABASE_URL }}\"" > .env
           echo "PORT=\"${{ secrets.PORT }}\"" >> .env
           echo "COOKIE_SECRET=\"${{ secrets.COOKIE_SECRET }}\"" >> .env
@@ -41,16 +41,15 @@ jobs:
 
       - name: test
         run: |
-          cd ..
-          yarn start
+          cd node_level4-5_express/src && node app.ts
 
       - name: Remove node_modules
         run: |
+          cd node_level4-5_express
           rm -rf node_modules
       
       - name: Make Zip File
         run: |
-          cd ..
           zip -qq -r ./$GITHUB_SHA.zip .
 
       - name: Configure AWS credentials
