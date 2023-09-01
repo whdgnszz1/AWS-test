@@ -22,14 +22,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18' 
+      # - name: Setup Node.js environment
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '18' 
 
-      - name: Install dependencies
-        run: |
-          cd node_level4-5_express && yarn install
+      # - name: Install dependencies
+      #   run: |
+      #     cd node_level4-5_express && yarn install
 
       - name: Create .env file
         run: |
@@ -44,10 +44,10 @@ jobs:
       #     cd node_level4-5_express/src
       #     timeout 20s npx ts-node app.ts
 
-      - name: Remove node_modules
-        run: |
-          cd node_level4-5_express
-          rm -rf node_modules
+      # - name: Remove node_modules
+      #   run: |
+      #     cd node_level4-5_express
+      #     rm -rf node_modules
       
       - name: Make Zip File
         run: |
