@@ -25,8 +25,9 @@ fi
 
 echo "> Installing dependencies"
 cd $NODE_APP_DIR
-/usr/bin/yarn install
+pwd
+yarn install
 
 echo "> Starting Node Express app"
-cd $NODE_APP_DIR/src
-/usr/bin/yarn install
+pwd
+yarn start
