@@ -33,7 +33,10 @@ jobs:
 
       - name: Create .env file
         run: |
+          ls -la
           cd node_level4-5_express/src
+          ls -la
+          pwd
           echo "DATABASE_URL=\"${{ secrets.DATABASE_URL }}\"" > .env
           echo "PORT=\"${{ secrets.PORT }}\"" >> .env
           echo "COOKIE_SECRET=\"${{ secrets.COOKIE_SECRET }}\"" >> .env
