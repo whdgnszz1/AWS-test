@@ -14,14 +14,19 @@ else
   sleep 5
 fi
 
+# .env 파일 존재 여부 확인
 if [ -f $ENV_PATH ]; then
+    echo "> .env 파일이 존재합니다."
+    cat $ENV_PATH
     source $ENV_PATH
+else
+    echo "> .env 파일이 존재하지 않습니다."
 fi
 
 echo "> Installing dependencies"
 cd $NODE_APP_DIR
-yarn install
+/usr/bin/yarn install
 
 echo "> Starting Node Express app"
 cd $NODE_APP_DIR/src
-yarn start
+/usr/bin/yarn install
