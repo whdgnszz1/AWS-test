@@ -33,7 +33,7 @@ app.use(
 );
 
 app.use("/test", (req, res, next) => {
-  res.send({ message: "CICD2" }); 
+  res.send({ message: "CICD3" }); 
 });
 
 // router
