@@ -5,4 +5,4 @@ module.exports = {
     interpreter: "./node_modules/.bin/ts-node",
     interpreter_args: "-P tsconfig.json"
   }]
-};
+}; 
