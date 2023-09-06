@@ -22,32 +22,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - name: Setup Node.js environment
-      #   uses: actions/setup-node@v2
-      #   with:
-      #     node-version: '18' 
-
-      # - name: Install dependencies
-      #   run: |
-      #     cd node_level4-5_express && yarn install
-
-      - name: Create .env file
+      - name: Create backend .env file
         run: |
-          cd node_level4-5_express
+          cd nodeZzang/backend
           echo 'DATABASE_URL=${{ secrets.DATABASE_URL }}' > .env
           echo 'PORT=${{ secrets.PORT }}' >> .env
           echo 'COOKIE_SECRET=${{ secrets.COOKIE_SECRET }}' >> .env
           echo 'JWT_SECRET=${{ secrets.JWT_SECRET }}' >> .env
+          echo 'REFRESH_TOKEN_SECRET=${{ secrets.REFRESH_TOKEN_SECRET }}' >> .env
+          echo 'MONGODB_URI=${{ secrets.MONGODB_URI }}' >> .env
 
-      # - name: test
-      #   run: | 
-      #     cd node_level4-5_express/src
-      #     timeout 20s npx ts-node app.ts
-
-      # - name: Remove node_modules
-      #   run: |
-      #     cd node_level4-5_express
-      #     rm -rf node_modules
+      - name: Create frontend .env file
+        run: |
+          cd nodeZzang/frontend
+          echo 'REACT_APP_SERVER_URL=${{ secrets.REACT_APP_SERVER_URL }}' > .env
       
       - name: Make Zip File
         run: |

@@ -1,6 +1,8 @@
 REPOSITORY=/home/ubuntu/jonghun
-NODE_APP_DIR=$REPOSITORY/node_level4-5_express
-ENV_PATH=$NODE_APP_DIR/.env
+NODE_APP_DIR=$REPOSITORY/nodeZzang
+BACKEND_ENV_PATH=$NODE_APP_DIR/backend/.env
+FRONTEND_ENV_PATH=$NODE_APP_DIR/frontend/.env
+
 
 cd $REPOSITORY
 
@@ -14,18 +16,36 @@ else
   sleep 5
 fi
 
-# .env 파일 존재 여부 확인
-if [ -f $ENV_PATH ]; then
-    echo "> .env 파일이 존재합니다."
-    cat $ENV_PATH
-    source $ENV_PATH
+# Backend 환경 변수 설정
+if [ -f $BACKEND_ENV_PATH ]; then
+    source $BACKEND_ENV_PATH
 else
-    echo "> .env 파일이 존재하지 않습니다."
+    echo "> backend.env 파일이 존재하지 않습니다."
 fi
 
-echo "> Installing dependencies"
-cd $NODE_APP_DIR
+# Frontend 환경 변수 설정
+if [ -f $FRONTEND_ENV_PATH ]; then
+    source $FRONTEND_ENV_PATH
+else
+    echo "> frontend/.env 파일이 존재하지 않습니다."
+fi
+
+# Frontend 의존성 패키지 설치
+echo "> Installing frontend dependencies"
+cd $NODE_APP_DIR/frontend
 /usr/bin/yarn install
 
+# Frontend Build
+echo "> Building the frontend"
+/usr/bin/yarn build
+
+
+# Backend 의존성 패키지 설치
+echo "> Installing backend dependencies"
+cd $NODE_APP_DIR/backend
+/usr/bin/yarn install
+
+# Backend 앱 실행
 echo "> Starting Node Express app"
-/usr/bin/yarn start
+cd $NODE_APP_DIR/backend
+/usr/bin/yarn start:pm2
