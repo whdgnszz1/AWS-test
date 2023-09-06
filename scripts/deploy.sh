@@ -37,6 +37,7 @@ cd $NODE_APP_DIR/frontend
 
 # Frontend Build
 echo "> Building the frontend"
+/usr/bin/yarn add @babel/plugin-proposal-private-property-in-object --dev
 /usr/bin/yarn build
 
 
